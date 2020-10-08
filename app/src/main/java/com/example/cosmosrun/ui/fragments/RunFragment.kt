@@ -4,6 +4,7 @@ import android.Manifest
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cosmosrun.R
 import com.example.cosmosrun.adapters.RunAdapter
 import com.example.cosmosrun.other.Constants.REQUEST_CODE_LOCATION_PERMISSION
+import com.example.cosmosrun.other.SortType
 import com.example.cosmosrun.other.TrackingUtility
 import com.example.cosmosrun.ui.viewmodels.MainViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -34,16 +36,36 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
         requestPermissions()
         setupRecyclerView()
 
-        viewModel.runsSortedByDate.observe(viewLifecycleOwner, Observer {
+        when(viewModel.sortType) {
+            SortType.DATE -> spFilter.setSelection(0)
+            SortType.RUNNING_TIME -> spFilter.setSelection(1)
+            SortType.DISTANCE -> spFilter.setSelection(2)
+            SortType.AVG_SPEED -> spFilter.setSelection(3)
+            SortType.CALORIES_BURNED -> spFilter.setSelection(4)
+        }
+
+        spFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                when(pos) {
+                    0 -> viewModel.sortRuns(SortType.DATE)
+                    1 -> viewModel.sortRuns(SortType.RUNNING_TIME)
+                    2 -> viewModel.sortRuns(SortType.DISTANCE)
+                    3 -> viewModel.sortRuns(SortType.AVG_SPEED)
+                    4 -> viewModel.sortRuns(SortType.CALORIES_BURNED)
+                }
+            }
+        }
+
+        viewModel.runs.observe(viewLifecycleOwner, Observer {
             runAdapter.submitList(it)
         })
-
         fab.setOnClickListener {
             findNavController().navigate(R.id.action_runFragment_to_trackingFragment)
             Snackbar.make(
                 requireActivity().findViewById(R.id.rootView),
-                "In Boosting, you will generate 2x Energy." +
-                        "\nData will be save for health statistics.",
+                "Run and generate energy for your spaceship.",
                 Snackbar.LENGTH_LONG
             ).show()
         }

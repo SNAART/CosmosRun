@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
         bottomNavigationView.setupWithNavController(navHostFragment.findNavController())
+        //prevent reload the fragment when click the same icon
+        bottomNavigationView.setOnNavigationItemReselectedListener { /* NO-OP */ }
 
         navHostFragment.findNavController()
             .addOnDestinationChangedListener { _, destination, _ ->

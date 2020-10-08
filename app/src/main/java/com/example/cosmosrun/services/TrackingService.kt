@@ -18,7 +18,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.cosmosrun.R
 import com.example.cosmosrun.other.Constants.ACTION_PAUSE_SERVICE
-import com.example.cosmosrun.other.Constants.ACTION_SHOW_TRACKING_FRAGMENT
 import com.example.cosmosrun.other.Constants.ACTION_START_OR_RESUME_SERVICE
 import com.example.cosmosrun.other.Constants.ACTION_STOP_SERVICE
 import com.example.cosmosrun.other.Constants.LOCATION_UPDATE_INTERVAL
@@ -28,7 +27,6 @@ import com.example.cosmosrun.other.Constants.NOTIFICATION_ID
 import com.example.cosmosrun.other.Constants.SMALLEST_LOCATION_INTERVAL
 import com.example.cosmosrun.other.Constants.TIMER_UPDATE_INTERVAL
 import com.example.cosmosrun.other.TrackingUtility
-import com.example.cosmosrun.ui.MainActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest

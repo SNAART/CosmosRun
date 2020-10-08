@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:background="@drawable/night"
+    >
     <Spinner
         android:id="@+id/spFilter"
         android:layout_width="wrap_content"
@@ -39,7 +40,7 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_black"
+        android:src="@drawable/ic_lightning"
         app:backgroundTint="@color/colorAccent"
         app:fabSize="normal"
         app:rippleColor="@android:color/white"

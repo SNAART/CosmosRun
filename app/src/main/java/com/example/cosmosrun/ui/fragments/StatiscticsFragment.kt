@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.cosmosrun.R
+import com.example.cosmosrun.other.CustomMarkerView
 import com.example.cosmosrun.other.TrackingUtility
 import com.example.cosmosrun.ui.viewmodels.MainViewModel
 import com.example.cosmosrun.ui.viewmodels.StatisticsViewModel
@@ -27,6 +28,7 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeToObservers()
+        setupBarChart()
     }
 
     private fun setupBarChart() {
@@ -60,7 +62,7 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
                 tvTotalTime.text = totalTimeRun
             }
         })
-        viewModel.totalDistance.observe(viewLifecycleOwner, Observer { it ->
+        viewModel.totalDistance.observe(viewLifecycleOwner, Observer {
             it?.let {
                 val km = it / 1000f
                 val totalDistance = round(km * 10f) / 10f
@@ -81,14 +83,15 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
                 tvTotalCalories.text = totalCalories
             }
         })
-        viewModel.runsSortedByDate.observe(viewLifecycleOwner, Observer{
+        viewModel.runsSortedByDate.observe(viewLifecycleOwner, Observer {
             it?.let {
-                val allAvgSpeeds = it.indices.map { i -> BarEntry(i.toFloat(), it[i].avgSpeedInKMH)}
-                val bardataSet = BarDataSet(allAvgSpeeds, "Avg Speed Over Time").apply{
+                val allAvgSpeeds = it.indices.map { i -> BarEntry(i.toFloat(), it[i].avgSpeedInKMH) }
+                val bardataSet = BarDataSet(allAvgSpeeds, "Avg Speed Over Time").apply {
                     valueTextColor = Color.WHITE
                     color = ContextCompat.getColor(requireContext(), R.color.colorAccent)
                 }
                 barChart.data = BarData(bardataSet)
+                barChart.marker = CustomMarkerView(it.reversed(), requireContext(), R.layout.marker_view)
                 barChart.invalidate()
             }
         })

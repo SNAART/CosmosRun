@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/statiscticsFragment"
-        android:name="com.example.cosmosrun.ui.fragments.StatiscticsFragment"
+        android:name="com.example.cosmosrun.ui.fragments.StatisticsFragment"
         android:label="StatiscticsFragment" />
     <fragment
         android:id="@+id/settingsFragment"

@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
         bottomNavigationView.setupWithNavController(navHostFragment.findNavController())
-        //prevent reload the fragment when click the same icon
-        bottomNavigationView.setOnNavigationItemReselectedListener { /* NO-OP */ }
 
         navHostFragment.findNavController()
             .addOnDestinationChangedListener { _, destination, _ ->
@@ -35,10 +33,15 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        navigateToTrackingFragmentIfNeeded(intent)
+    }
+
     private fun navigateToTrackingFragmentIfNeeded(intent: Intent?) {
         if(intent?.action == ACTION_SHOW_TRACKING_FRAGMENT) {
             navHostFragment.findNavController().navigate(R.id.action_global_trackingFragment)
         }
     }
-
 }
+

@@ -2,7 +2,6 @@ package com.example.cosmosrun.ui.fragments
 //Handling map fragment lifecycle
 import android.content.Intent
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -45,7 +44,6 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
 
     private var curTimeInMs = 0L
 
-    private var steps = 0f
 
     private var menu: Menu? = null
 
@@ -62,10 +60,6 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mapView.onCreate(savedInstanceState)
-        btnToggleRun.setOnClickListener {
-            toggleRun()
-        }
 
         if(savedInstanceState != null) {
             val cancelTrackingDialog = parentFragmentManager.findFragmentByTag(
@@ -104,7 +98,6 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
             tvTimer.text = formattedTime
         })
     }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.tracking_menu, menu)

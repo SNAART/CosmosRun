@@ -5,7 +5,7 @@
 
     <action android:id="@+id/action_global_trackingFragment"
         app:destination="@id/trackingFragment"
-        app:launchSingleTop="true"/>
+        app:launchSingleTop="true" />
 
     <fragment
         android:id="@+id/runFragment"
@@ -24,6 +24,10 @@
             app:destination="@id/runFragment" />
     </fragment>
     <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.cosmosrun.ui.fragments.StatisticsFragment"
+        android:label="StatisticsFragment" />
+    <fragment
         android:id="@+id/trackingFragment"
         android:name="com.example.cosmosrun.ui.fragments.TrackingFragment"
         android:label="TrackingFragment" >
@@ -32,11 +36,11 @@
             app:destination="@id/runFragment" />
     </fragment>
     <fragment
-        android:id="@+id/statiscticsFragment"
-        android:name="com.example.cosmosrun.ui.fragments.StatisticsFragment"
-        android:label="StatiscticsFragment" />
-    <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.cosmosrun.ui.fragments.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/musicFragment"
+        android:name="com.example.cosmosrun.ui.fragments.MusicFragment"
+        android:label="MusicFragment" />
 </navigation>

@@ -3,7 +3,7 @@
 
     <item android:id="@+id/runFragment"
         android:title="Your Boost"
-        android:icon="@drawable/ic_run" />
+        android:icon="@drawable/ic_spaceship" />
 
     <item android:id="@+id/statisticsFragment"
         android:title="Statistics"

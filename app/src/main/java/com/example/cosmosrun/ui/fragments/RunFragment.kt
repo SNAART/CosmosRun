@@ -67,7 +67,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
             findNavController().navigate(R.id.action_runFragment_to_trackingFragment)
             Snackbar.make(
                 requireActivity().findViewById(R.id.rootView),
-                "Run and generate energy for your spaceship.",
+                "Run and burn your kcal.",
                 Snackbar.LENGTH_LONG
             ).show()
         }
